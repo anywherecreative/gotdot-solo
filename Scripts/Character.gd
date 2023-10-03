@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var move_speed : float = 50
+var move_speed : float = 75
 var current_direction : String = "right"
 var is_looping : bool = true
 
