@@ -24,5 +24,4 @@ func _physics_process(delta):
 	else:
 		_animated_sprite.stop()
 		
-	print(velocity)
 	
