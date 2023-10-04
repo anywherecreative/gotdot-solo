@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1hmp0s0dwnmh"]
+
+[ext_resource type="Script" path="res://Scripts/GreenEgg.gd" id="1_nbcpc"]
+[ext_resource type="Texture2D" uid="uid://b4bl40870d1b3" path="res://Sprites/Tiles/Eggs/green idle/animation0.png" id="2_475qw"]
+[ext_resource type="Texture2D" uid="uid://b87i6qy5wlyvq" path="res://Sprites/Tiles/Eggs/green idle/animation1.png" id="3_p78q8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cxhct"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_475qw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_475qw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_p78q8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_p78q8")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eyiah"]
+radius = 7.0
+height = 18.0
+
+[node name="GreenEgg" type="Area2D"]
+position = Vector2(-48, -68)
+script = ExtResource("1_nbcpc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-22, -3)
+scale = Vector2(0.0277426, 0.0277426)
+sprite_frames = SubResource("SpriteFrames_cxhct")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-22, -3)
+shape = SubResource("CapsuleShape2D_eyiah")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

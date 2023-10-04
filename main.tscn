@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://cj747jxqhj6rg"]
+[gd_scene load_steps=58 format=3 uid="uid://cj747jxqhj6rg"]
 
 [ext_resource type="Texture2D" uid="uid://bbfadog2exprm" path="res://Sprites/Tiles/tiles_grass.png" id="1_w2vl2"]
 [ext_resource type="Texture2D" uid="uid://bo507glb0k343" path="res://Sprites/Tiles/tiles_plants.png" id="2_g3n7k"]
@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://bbvl5ftxtguud" path="res://Sprites/Tiles/Bunny/s5-2-bunnny-Sheet - walk.png" id="3_p81ku"]
 [ext_resource type="Texture2D" uid="uid://6uclmrmk1jho" path="res://Sprites/Tiles/Bunny/s5-2-bunnny-Sheet - attack.png" id="4_b3283"]
 [ext_resource type="FontFile" uid="uid://c8w67gon2yctq" path="res://Fonts/LilitaOne-Regular.ttf" id="6_1g8rs"]
-[ext_resource type="Texture2D" uid="uid://c2jjjgkd0tjj6" path="res://Sprites/Tiles/Eggs/violet idle/yiolet idle 1.png" id="6_yj44n"]
-[ext_resource type="Texture2D" uid="uid://clci6pnaunswd" path="res://Sprites/Tiles/Eggs/violet idle/yiolet idle 2.png" id="7_or2bs"]
-[ext_resource type="Script" path="res://Scripts/PurpleEgg.gd" id="8_ida2t"]
+[ext_resource type="PackedScene" uid="uid://b74f3f7krkxdi" path="res://purple_egg.tscn" id="7_8w0yf"]
+[ext_resource type="PackedScene" uid="uid://4ymmgq73kp8q" path="res://pink_egg.tscn" id="8_nud4t"]
+[ext_resource type="PackedScene" uid="uid://b1hmp0s0dwnmh" path="res://green_egg.tscn" id="9_g5mua"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mw3oy"]
 texture = ExtResource("1_w2vl2")
@@ -1957,31 +1957,8 @@ font = ExtResource("6_1g8rs")
 font_size = 20
 font_color = Color(0.439216, 1, 1, 1)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ao06o"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_yj44n")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_yj44n")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_or2bs")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_or2bs")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0miav"]
-radius = 265.48
-height = 530.961
-
 [node name="Node2D" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [-77.0, -79.0, -63.0]
 
 [node name="GroundTiles" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_2phn8")
@@ -2019,19 +1996,9 @@ offset_bottom = 103.0
 text = "Eggs Found: 0"
 label_settings = SubResource("LabelSettings_twkkh")
 
-[node name="PurpleEgg" type="Area2D" parent="."]
-script = ExtResource("8_ida2t")
+[node name="PurpleEgg" parent="." instance=ExtResource("7_8w0yf")]
+position = Vector2(0, -2)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PurpleEgg"]
-position = Vector2(-129, -69)
-scale = Vector2(0.0263672, 0.0263672)
-sprite_frames = SubResource("SpriteFrames_ao06o")
-animation = &"idle"
-frame_progress = 0.26579
+[node name="PinkEgg" parent="." instance=ExtResource("8_nud4t")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PurpleEgg"]
-position = Vector2(-129, -68)
-scale = Vector2(0.0263672, 0.0263672)
-shape = SubResource("CapsuleShape2D_0miav")
-
-[connection signal="body_entered" from="PurpleEgg" to="PurpleEgg" method="_on_body_entered"]
+[node name="GreenEgg" parent="." instance=ExtResource("9_g5mua")]

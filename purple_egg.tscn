@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://b74f3f7krkxdi"]
+
+[ext_resource type="Script" path="res://Scripts/PurpleEgg.gd" id="1_qp6op"]
+[ext_resource type="Texture2D" uid="uid://c2jjjgkd0tjj6" path="res://Sprites/Tiles/Eggs/violet idle/yiolet idle 1.png" id="2_fcg6x"]
+[ext_resource type="Texture2D" uid="uid://clci6pnaunswd" path="res://Sprites/Tiles/Eggs/violet idle/yiolet idle 2.png" id="3_o4l4t"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ao06o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_fcg6x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_fcg6x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_o4l4t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_o4l4t")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0miav"]
+radius = 265.48
+height = 530.961
+
+[node name="PurpleEgg" type="Area2D"]
+script = ExtResource("1_qp6op")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-129, -69)
+scale = Vector2(0.0263672, 0.0263672)
+sprite_frames = SubResource("SpriteFrames_ao06o")
+animation = &"idle"
+frame_progress = 0.26579
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-129, -68)
+scale = Vector2(0.0263672, 0.0263672)
+shape = SubResource("CapsuleShape2D_0miav")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

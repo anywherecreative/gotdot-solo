@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://4ymmgq73kp8q"]
+
+[ext_resource type="Script" path="res://Scripts/PinkEgg.gd" id="1_ih70p"]
+[ext_resource type="Texture2D" uid="uid://ckkwg6e7wvtlx" path="res://Sprites/Tiles/Eggs/pink idle/sprite_0.png" id="2_3m7t7"]
+[ext_resource type="Texture2D" uid="uid://de33wlh253i6o" path="res://Sprites/Tiles/Eggs/pink idle/sprite_1.png" id="3_3c5u4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yujyi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3m7t7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_3m7t7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3c5u4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3c5u4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4fmtl"]
+radius = 7.0
+height = 18.0
+
+[node name="PinkEgg" type="Area2D"]
+position = Vector2(-48, -68)
+script = ExtResource("1_ih70p")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-46, -3)
+scale = Vector2(0.028082, 0.028082)
+sprite_frames = SubResource("SpriteFrames_yujyi")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-46, -3)
+shape = SubResource("CapsuleShape2D_4fmtl")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
