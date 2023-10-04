@@ -3,8 +3,20 @@ extends CharacterBody2D
 var move_speed : float = 75
 var current_direction : String = "right"
 var is_looping : bool = true
+var eggs_collected : int = 0
+var health : int = 3;
 
-var eggs_collected = 0
+const max_health : int = 5;
+
+@onready var carrots = [
+	get_node("CanvasLayer/CarrotHealth5"),
+	get_node("CanvasLayer/CarrotHealth4"),
+	get_node("CanvasLayer/CarrotHealth3"),
+	get_node("CanvasLayer/CarrotHealth2"),
+	get_node("CanvasLayer/CarrotHealth"),
+]
+
+
 
 @onready var score_text : Label = get_node("CanvasLayer/Score")
 
@@ -53,3 +65,9 @@ func found_egg() :
 	eggs_collected+=1
 	score_text.text = str("Eggs Found: ", eggs_collected)
 	
+func _ready():
+	for n in max_health:
+		if n >= health:
+			carrots[n].full()
+		else:
+			carrots[n].eaten()

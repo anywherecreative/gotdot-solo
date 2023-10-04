@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://cj747jxqhj6rg"]
+[gd_scene load_steps=60 format=3 uid="uid://cj747jxqhj6rg"]
 
 [ext_resource type="Texture2D" uid="uid://bbfadog2exprm" path="res://Sprites/Tiles/tiles_grass.png" id="1_w2vl2"]
 [ext_resource type="Texture2D" uid="uid://bo507glb0k343" path="res://Sprites/Tiles/tiles_plants.png" id="2_g3n7k"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://dgflpvfoijia8" path="res://Sprites/Tiles/carrot.png" id="7_4245j"]
 [ext_resource type="Script" path="res://Scripts/CarrotHealth.gd" id="8_i7ndr"]
 [ext_resource type="PackedScene" uid="uid://4ymmgq73kp8q" path="res://pink_egg.tscn" id="8_nud4t"]
-[ext_resource type="Texture2D" uid="uid://crjc0g3ju1ynh" path="res://Sprites/Tiles/carrot-eaten.png" id="9_fu5hd"]
 [ext_resource type="PackedScene" uid="uid://b1hmp0s0dwnmh" path="res://green_egg.tscn" id="9_g5mua"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mw3oy"]
@@ -2008,21 +2007,25 @@ script = ExtResource("8_i7ndr")
 position = Vector2(1034.47, 29.2036)
 scale = Vector2(0.210446, 0.210446)
 texture = ExtResource("7_4245j")
+script = ExtResource("8_i7ndr")
 
 [node name="CarrotHealth3" type="Sprite2D" parent="Character/CanvasLayer"]
 position = Vector2(1065.47, 29.2036)
 scale = Vector2(0.210446, 0.210446)
 texture = ExtResource("7_4245j")
+script = ExtResource("8_i7ndr")
 
 [node name="CarrotHealth4" type="Sprite2D" parent="Character/CanvasLayer"]
 position = Vector2(1097.47, 29.2036)
 scale = Vector2(0.210446, 0.210446)
 texture = ExtResource("7_4245j")
+script = ExtResource("8_i7ndr")
 
 [node name="CarrotHealth5" type="Sprite2D" parent="Character/CanvasLayer"]
 position = Vector2(1127.47, 29.2036)
 scale = Vector2(0.210446, 0.210446)
-texture = ExtResource("9_fu5hd")
+texture = ExtResource("7_4245j")
+script = ExtResource("8_i7ndr")
 
 [node name="PurpleEgg" parent="." instance=ExtResource("7_8w0yf")]
 position = Vector2(0, -2)
