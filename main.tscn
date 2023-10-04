@@ -1,10 +1,11 @@
-[gd_scene load_steps=58 format=3 uid="uid://cj747jxqhj6rg"]
+[gd_scene load_steps=60 format=3 uid="uid://cj747jxqhj6rg"]
 
 [ext_resource type="Texture2D" uid="uid://bbfadog2exprm" path="res://Sprites/Tiles/tiles_grass.png" id="1_w2vl2"]
 [ext_resource type="Texture2D" uid="uid://bo507glb0k343" path="res://Sprites/Tiles/tiles_plants.png" id="2_g3n7k"]
 [ext_resource type="Script" path="res://Scripts/Character.gd" id="3_bgnv0"]
 [ext_resource type="Texture2D" uid="uid://bbvl5ftxtguud" path="res://Sprites/Tiles/Bunny/s5-2-bunnny-Sheet - walk.png" id="3_p81ku"]
 [ext_resource type="Texture2D" uid="uid://6uclmrmk1jho" path="res://Sprites/Tiles/Bunny/s5-2-bunnny-Sheet - attack.png" id="4_b3283"]
+[ext_resource type="FontFile" uid="uid://c8w67gon2yctq" path="res://Fonts/LilitaOne-Regular.ttf" id="6_1g8rs"]
 [ext_resource type="Texture2D" uid="uid://c2jjjgkd0tjj6" path="res://Sprites/Tiles/Eggs/violet idle/yiolet idle 1.png" id="6_yj44n"]
 [ext_resource type="Texture2D" uid="uid://clci6pnaunswd" path="res://Sprites/Tiles/Eggs/violet idle/yiolet idle 2.png" id="7_or2bs"]
 [ext_resource type="Script" path="res://Scripts/PurpleEgg.gd" id="8_ida2t"]
@@ -1951,6 +1952,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_twkkh"]
+font = ExtResource("6_1g8rs")
+font_size = 20
+font_color = Color(0.439216, 1, 1, 1)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_ao06o"]
 animations = [{
 "frames": [{
@@ -2003,6 +2009,16 @@ position = Vector2(257, -11)
 offset = Vector2(-235, 0)
 zoom = Vector2(2, 2)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="Character"]
+
+[node name="Score" type="Label" parent="Character/CanvasLayer"]
+offset_left = 13.0
+offset_top = 11.0
+offset_right = 345.0
+offset_bottom = 103.0
+text = "Eggs Found: 0"
+label_settings = SubResource("LabelSettings_twkkh")
+
 [node name="PurpleEgg" type="Area2D" parent="."]
 script = ExtResource("8_ida2t")
 
@@ -2011,7 +2027,7 @@ position = Vector2(-129, -69)
 scale = Vector2(0.0263672, 0.0263672)
 sprite_frames = SubResource("SpriteFrames_ao06o")
 animation = &"idle"
-frame_progress = 0.265178
+frame_progress = 0.26579
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PurpleEgg"]
 position = Vector2(-129, -68)

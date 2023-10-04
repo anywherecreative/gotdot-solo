@@ -6,6 +6,8 @@ var is_looping : bool = true
 
 var eggs_collected = 0
 
+@onready var score_text : Label = get_node("CanvasLayer/Score")
+
 @onready var _animated_sprite = $AnimatedSprite2D
 
 func _physics_process(delta):
@@ -49,4 +51,5 @@ func _physics_process(delta):
 
 func found_egg() :
 	eggs_collected+=1
+	score_text.text = str("Eggs Found: ", eggs_collected)
 	
