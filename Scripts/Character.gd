@@ -4,6 +4,8 @@ var move_speed : float = 75
 var current_direction : String = "right"
 var is_looping : bool = true
 
+var eggs_collected = 0
+
 @onready var _animated_sprite = $AnimatedSprite2D
 
 func _physics_process(delta):
@@ -45,4 +47,6 @@ func _physics_process(delta):
 	
 	move_and_slide()
 
+func found_egg() :
+	eggs_collected+=1
 	
