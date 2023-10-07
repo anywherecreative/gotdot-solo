@@ -79,3 +79,6 @@ func _ready():
 	add_child(bg_music)
 	print(bg_music.get_volume_db())
 	bg_music.set_volume_db(-8.0)
+
+
+
