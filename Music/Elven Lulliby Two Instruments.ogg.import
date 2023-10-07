@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bu3uemty0505k"
+path="res://.godot/imported/Elven Lulliby Two Instruments.ogg-f37f7deaab03988e629d79ebb43d15f7.oggvorbisstr"
+
+[deps]
+
+source_file="res://Music/Elven Lulliby Two Instruments.ogg"
+dest_files=["res://.godot/imported/Elven Lulliby Two Instruments.ogg-f37f7deaab03988e629d79ebb43d15f7.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

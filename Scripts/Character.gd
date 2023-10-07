@@ -8,6 +8,8 @@ var health : int = 3;
 
 const max_health : int = 5;
 
+var bg_music := AudioStreamPlayer.new()
+
 @onready var carrots = [
 	get_node("CanvasLayer/CarrotHealth5"),
 	get_node("CanvasLayer/CarrotHealth4"),
@@ -71,3 +73,9 @@ func _ready():
 			carrots[n].full()
 		else:
 			carrots[n].eaten()
+	
+	bg_music.stream = load("res://Music/Elven Lulliby Two Instruments.ogg")
+	bg_music.autoplay = true
+	add_child(bg_music)
+	print(bg_music.get_volume_db())
+	bg_music.set_volume_db(-8.0)
