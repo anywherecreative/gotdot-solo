@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Area2D
 
 @onready var _animated_sprite = $EnemySprite2D
 @onready var hero = get_node("../Character")
@@ -17,6 +17,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta) -> void:
+
 	var distance2Hero = global_position.distance_to(hero.global_position);
 	if distance2Hero < chase_range:
 		chasing = true
@@ -42,7 +43,13 @@ func _physics_process(delta) -> void:
 func _on_enemy_sprite_2d_animation_finished() -> void:
 
 	if awakened:
-
 		_animated_sprite.play("curious")
 	if splooted:
 		_animated_sprite.play("sleeping")
+
+func _on_body_entered(body):
+	if body.is_in_group("Player"):
+		body.hit_enemy()
+		var target_position = (hero.position - position).normalized()
+		position -= target_position * 30
+		

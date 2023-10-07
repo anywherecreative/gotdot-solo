@@ -4,18 +4,19 @@ var move_speed : float = 75
 var current_direction : String = "right"
 var is_looping : bool = true
 var eggs_collected : int = 0
-var health : int = 3;
+var health : int = 5;
+var damaged : bool = false
 
 const max_health : int = 5;
 
 var bg_music := AudioStreamPlayer.new()
 
 @onready var carrots = [
-	get_node("CanvasLayer/CarrotHealth5"),
-	get_node("CanvasLayer/CarrotHealth4"),
-	get_node("CanvasLayer/CarrotHealth3"),
-	get_node("CanvasLayer/CarrotHealth2"),
 	get_node("CanvasLayer/CarrotHealth"),
+	get_node("CanvasLayer/CarrotHealth2"),
+	get_node("CanvasLayer/CarrotHealth3"),
+	get_node("CanvasLayer/CarrotHealth4"),
+	get_node("CanvasLayer/CarrotHealth5"),
 ]
 
 
@@ -27,6 +28,8 @@ var bg_music := AudioStreamPlayer.new()
 func _physics_process(delta):
 	velocity.x = 0
 	velocity.y = 0
+	if damaged:
+		return
 	#using an elif structure to avoid diagonals
 	if Input.is_key_pressed(KEY_LEFT) || Input.is_key_pressed(KEY_A):
 		is_looping = true
@@ -67,18 +70,34 @@ func found_egg() :
 	eggs_collected+=1
 	score_text.text = str("Eggs Found: ", eggs_collected)
 	
-func _ready():
+func hit_enemy() :
+	health -= 1
+	damaged = true
+	print("show anim")
+	_animated_sprite.play(str("damage_",current_direction))
+	draw_health()
+	
+	
+func draw_health() -> void:
 	for n in max_health:
-		if n >= health:
+		if health > n:
 			carrots[n].full()
 		else:
 			carrots[n].eaten()
 	
+func _ready():
+	draw_health()
+	
 	bg_music.stream = load("res://Music/Elven Lulliby Two Instruments.ogg")
 	bg_music.autoplay = true
 	add_child(bg_music)
-	print(bg_music.get_volume_db())
+
 	bg_music.set_volume_db(-8.0)
 
 
 
+
+
+func _on_animated_sprite_2d_animation_finished():
+	if(damaged):
+		damaged = false;
