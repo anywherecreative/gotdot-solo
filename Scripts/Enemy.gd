@@ -33,9 +33,10 @@ func _physics_process(delta) -> void:
 		awakened = true
 		splooted = false
 		_animated_sprite.play("awakened")
-	elif distance2Hero > detection_range && !splooted && !chasing:
+	elif distance2Hero > detection_range && !splooted:
 		splooted = true
 		awakened = false
+		chasing = false
 		_animated_sprite.play("sploot")
 
 
