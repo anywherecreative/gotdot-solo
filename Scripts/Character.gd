@@ -6,6 +6,7 @@ var is_looping : bool = true
 var eggs_collected : int = 0
 var health : int = 5;
 var damaged : bool = false
+var dead : bool = false
 
 const max_health : int = 5;
 
@@ -28,7 +29,7 @@ var bg_music := AudioStreamPlayer.new()
 func _physics_process(delta):
 	velocity.x = 0
 	velocity.y = 0
-	if damaged:
+	if damaged || dead:
 		return
 	#using an elif structure to avoid diagonals
 	if Input.is_key_pressed(KEY_LEFT) || Input.is_key_pressed(KEY_A):
@@ -73,9 +74,9 @@ func found_egg() :
 func hit_enemy() :
 	health -= 1
 	damaged = true
-	print("show anim")
 	_animated_sprite.play(str("damage_",current_direction))
 	draw_health()
+	check_death()
 	
 	
 func draw_health() -> void:
@@ -84,6 +85,11 @@ func draw_health() -> void:
 			carrots[n].full()
 		else:
 			carrots[n].eaten()
+			
+func check_death() -> void:
+	if health == 0:
+		dead = true
+		_animated_sprite.play(str("die_",current_direction))
 	
 func _ready():
 	draw_health()
